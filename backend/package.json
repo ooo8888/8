@@ -1,0 +1,40 @@
+{
+  "name": "exitlink-omega-backend",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "tap test/**/*.test.js",
+    "test:watch": "tap -w test/**/*.test.js",
+    "test:coverage": "tap test/**/*.test.js --coverage-report=html"
+  },
+  "keywords": [
+    "exitlink",
+    "crypto",
+    "security",
+    "self-destruct"
+  ],
+  "author": "EXITLINK OMEGA Team",
+  "license": "UNLICENSED",
+  "description": "Backend API for EXITLINK OMEGA - a crypto-native, self-destructing-link platform",
+  "dependencies": {
+    "@fastify/cors": "^11.0.1",
+    "@fastify/jwt": "^7.2.4",
+    "bcrypt": "^5.1.1",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.5.0",
+    "fastify": "^5.3.2",
+    "minio": "^8.0.5",
+    "pg": "^8.15.6",
+    "redis": "^5.0.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
+    "sinon": "^17.0.1",
+    "supertest": "^6.3.3",
+    "tap": "^16.3.8"
+  }
+}
