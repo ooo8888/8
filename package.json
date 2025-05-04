@@ -1,0 +1,41 @@
+{
+  "name": "exitlink-omega",
+  "version": "1.0.0",
+  "description": "Crypto-native, self-destructing-link platform with military-grade security",
+  "main": "index.js",
+  "scripts": {
+    "start": "./start.sh",
+    "dev": "./start.sh dev",
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:coverage": "./scripts/check-coverage.sh",
+    "test:run": "./scripts/run-tests.sh",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": [
+    "crypto",
+    "security",
+    "self-destruct",
+    "privacy",
+    "encryption"
+  ],
+  "author": "EXITLINK OMEGA",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exitlink/omega.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXITLINK OMEGA</title>
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #0f0f0f;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    
+    header {
+      text-align: center;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+      border-bottom: 1px solid #333;
+    }
+    
+    h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      background: linear-gradient(90deg, #ff3e00, #ff8700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(255, 62, 0, 0.2);
+    }
+    
+    h2 {
+      font-size: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      color: #ff5500;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .feature-card {
+      background-color: #1a1a1a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-top: 0;
+      color: #ff8700;
+    }
+    
+    .cta {
+      text-align: center;
+      margin: 4rem 0;
+      padding: 3rem;
+      background: linear-gradient(135deg, #1f1f1f 0%, #121212 100%);
+      border-radius: 12px;
+    }
+    
+    .cta h2 {
+      margin-top: 0;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #ff3e00, #ff8700);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px rgba(255, 62, 0, 0.3);
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 62, 0, 0.4);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #0a0a0a;
+      border-top: 1px solid #333;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>EXITLINK OMEGA</h1>
+      <p>Military-grade self-destructing links with crypto payments</p>
+    </div>
+  </header>
+  
+  <div class="container">
+    <section>
+      <h2>About EXITLINK OMEGA</h2>
+      <p>
+        EXITLINK OMEGA is a crypto-native, self-destructing-link platform that combines military-grade security, 
+        luxury UX, and a micro-payment credit economy. Users anonymously create one-time or time-limited links 
+        that deliver encrypted text, files, or voice notes.
+      </p>
+      <p>
+        Each action incurs a credit cost; credits are prepaid with Bitcoin, Ethereum, Litecoin, Solana, Monero, or XRP. 
+        Links vanish after their trigger—view count, timer, region mismatch, device mismatch, or screenshot attempt.
+      </p>
+      <p>
+        No personal data, no email, no password: identity = a 12-word recovery phrase that unlocks an HD wallet–style 
+        vault storing credits and link history.
+      </p>
+    </section>
+    
+    <section>
+      <h2>Key Features</h2>
+      <div class="features">
+        <div class="feature-card">
+          <h3>Anonymous Wallets</h3>
+          <p>No signup friction. Your identity is a 12-word recovery phrase that unlocks your HD wallet-style vault.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Military-Grade Encryption</h3>
+          <p>AES-256 + optional Kyber wrapper for post-quantum security.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Granular Kill-Switches</h3>
+          <p>Links vanish after view count, timer, region mismatch, device mismatch, or screenshot attempt.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Credit Economy</h3>
+          <p>Micro-transactions fit ad-hoc use cases. Pay only for what you need.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Zero-Trace Storage</h3>
+          <p>Payload fragments in RAM/MinIO with TTL policy. Nothing persists after destruction.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Self-Host Bundle</h3>
+          <p>No trust in us; run it on your VDS with our one-click installer.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="cta">
+      <h2>Ready to Secure Your Communications?</h2>
+      <p>Get started with EXITLINK OMEGA today and experience the future of secure, self-destructing communications.</p>
+      <a href="#" class="btn">Create Your First Link</a>
+    </section>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 EXITLINK OMEGA. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
