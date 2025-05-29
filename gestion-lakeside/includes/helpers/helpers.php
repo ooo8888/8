@@ -78,5 +78,31 @@ function gl_enqueue_assets() {
     wp_enqueue_script('gsap', 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js', array(), '3.11.4', true);
     wp_enqueue_script('gl-scripts', GL_PLUGIN_URL . 'assets/js/scripts.js', array('gsap'), GL_VERSION, true);
 }
+// Get quote count
+function gl_get_quote_count() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'gl_quotes';
+    return (int)$wpdb->get_var("SELECT COUNT(*) FROM $table_name");
+}
+
+// Get blog post count
+function gl_get_blog_post_count() {
+    $count = wp_count_posts('post');
+    return isset($count->publish) ? (int)$count->publish : 0;
+}
+
+// Get recent blog posts (titles and links)
+function gl_get_recent_blog_posts($limit = 5) {
+    $posts = get_posts(array('post_type' => 'post', 'posts_per_page' => $limit));
+    $result = array();
+    foreach ($posts as $post) {
+        $result[] = array(
+            'title' => get_the_title($post->ID),
+            'url' => get_permalink($post->ID)
+        );
+    }
+    return $result;
+}
+
 
 ?>

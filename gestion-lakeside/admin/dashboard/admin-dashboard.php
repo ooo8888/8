@@ -75,6 +75,7 @@ function gl_dashboard_page() {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+
     document.addEventListener('DOMContentLoaded', function() {
       // Animate dashboard cards
       gsap.from('.wrap h1, .wrap h2, .wrap p, .wrap form', {
@@ -94,26 +95,39 @@ function gl_dashboard_page() {
           gsap.to(el, {scale: 1, boxShadow: 'none', duration: 0.18});
         });
       });
-      // Chart.js demo data for analytics
+      // Real analytics data for dashboard
       if (document.getElementById('gl-analytics-chart')) {
-        new Chart(document.getElementById('gl-analytics-chart').getContext('2d'), {
-          type: 'line',
-          data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            datasets: [{
-              label: 'Quote Requests',
-              data: [12, 19, 7, 14, 20, 13, 17],
-              borderColor: '#48BFF9',
-              backgroundColor: 'rgba(72,191,249,0.1)',
-              tension: 0.4,
-              fill: true
-            }]
-          },
-          options: {
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true } }
-          }
-        });
+        fetch(ajaxurl + '?action=gl_dashboard_analytics')
+          .then(response => response.json())
+          .then(data => {
+            if (!data.success) return;
+            const stats = data.data;
+            const ctx = document.getElementById('gl-analytics-chart').getContext('2d');
+            new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['Quotes', 'Blog Posts'],
+                datasets: [{
+                  label: 'Count',
+                  data: [stats.quote_count, stats.blog_count],
+                  backgroundColor: ['#48BFF9', '#1E90FF'],
+                  borderColor: ['#48BFF9', '#1E90FF'],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
+              }
+            });
+            // Show recent posts below chart
+            let postsHtml = '<h4>Recent Blog Posts</h4><ul style="margin-top:1rem;">';
+            stats.recent_posts.forEach(post => {
+              postsHtml += `<li><a href="${post.url}" target="_blank" style="color:#48BFF9;">${post.title}</a></li>`;
+            });
+            postsHtml += '</ul>';
+            document.querySelector('.gl-analytics-widget').insertAdjacentHTML('beforeend', postsHtml);
+          });
       }
     });
     </script>
@@ -177,6 +191,10 @@ function gl_handle_image_upload() {
 
     $attachment = array(
         'post_mime_type' => $upload['type'],
+// --- Modular placeholder for future site traffic analytics integration ---
+// To be implemented: Google Analytics API or WP.com Stats integration for traffic/visitor data
+// Example: add_action('wp_ajax_gl_dashboard_traffic', 'gl_dashboard_traffic_callback');
+
         'post_title' => sanitize_file_name($file['name']),
         'post_content' => '',
         'post_status' => 'inherit'
