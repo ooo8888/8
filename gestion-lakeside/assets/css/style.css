@@ -1,0 +1,141 @@
+/* Gestion Lakeside Inc. - Dark Luxury Theme CSS */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+@font-face {
+  font-family: 'Monument Extended';
+  src: url('../fonts/MonumentExtended-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --color-midnight-black: #0D1C2E;
+  --color-glacier-blue: #48BFF9;
+  --color-arctic-white: #F4F4F4;
+  --font-header: 'Monument Extended', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-midnight-black);
+  color: var(--color-arctic-white);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  color: var(--color-glacier-blue);
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+a {
+  color: var(--color-glacier-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover, a:focus {
+  color: var(--color-arctic-white);
+  outline: none;
+}
+
+button, input[type="submit"] {
+  background-color: var(--color-glacier-blue);
+  border: none;
+  color: var(--color-arctic-white);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-header);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #2a9df4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Utility classes */
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Scrollbar styling for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-midnight-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-glacier-blue);
+  border-radius: 4px;
+}
+
+/* Cursor glow effect */
+.cursor-glow {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: rgba(72, 191, 249, 0.5);
+  box-shadow: 0 0 15px 5px rgba(72, 191, 249, 0.7);
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out;
+  z-index: 9999;
+}
+
+/* Floating CTA bar */
+.floating-cta {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-glacier-blue);
+  color: var(--color-arctic-white);
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  font-family: var(--font-header);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(72, 191, 249, 0.7);
+  z-index: 10000;
+  transition: background-color 0.3s ease;
+}
+
+.floating-cta:hover {
+  background-color: #2a9df4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  button, input[type="submit"] {
+    padding: 0.5rem 1rem;
+  }
+}
