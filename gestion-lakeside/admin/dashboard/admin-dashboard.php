@@ -1,6 +1,11 @@
 <?php
 // Admin dashboard functions for Gestion Lakeside plugin
 
+// Include modular dashboard widgets
+require_once __DIR__ . '/widgets/gl-analytics-widget.php';
+require_once __DIR__ . '/widgets/gl-image-upload-widget.php';
+require_once __DIR__ . '/widgets/gl-content-editor-widget.php';
+
 // Add admin menu
 function gl_admin_menu() {
     add_menu_page(
@@ -62,13 +67,11 @@ function gl_dashboard_page() {
         </form>
 
         <h2><?php _e('Content Management', 'gestion-lakeside'); ?></h2>
-        <?php gl_render_content_editor(); ?>
+        <?php gl_render_content_editor_widget(); ?>
     </div>
     <div class="gl-dashboard-widgets">
-        <div class="gl-widget gl-analytics-widget">
-            <h3><i class="fa-solid fa-chart-line"></i> Analytics</h3>
-            <canvas id="gl-analytics-chart" height="120"></canvas>
-        </div>
+        <?php gl_render_analytics_widget(); ?>
+        <?php gl_render_image_upload_widget(); ?>
     </div>
     <!-- Advanced Dashboard UI: GSAP, SVG, and Microinteractions -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
