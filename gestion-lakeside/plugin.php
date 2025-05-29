@@ -23,6 +23,18 @@ define('GL_VERSION', '1.0.0');
 function gl_load_textdomain() {
     load_plugin_textdomain('gestion-lakeside', false, dirname(plugin_basename(__FILE__)) . '/languages');
 }
+
+// Dynamic locale switching for admin dashboard (EN/FR)
+add_filter('locale', function($locale) {
+    if (is_admin() && isset($_GET['page']) && $_GET['page'] === 'gl-dashboard') {
+        $user_id = get_current_user_id();
+        $lang = get_user_meta($user_id, 'gl_dashboard_lang', true);
+        if ($lang === 'fr') return 'fr_FR';
+        if ($lang === 'en') return 'en_US';
+    }
+    return $locale;
+});
+
 add_action('plugins_loaded', 'gl_load_textdomain');
 
 // Include required files
