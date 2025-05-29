@@ -14,10 +14,21 @@ function gl_admin_menu() {
     );
 }
 
-// Placeholder for content editing UI
+// Content editing UI using WordPress WYSIWYG editor
 function gl_render_content_editor() {
+    $content = get_option('gl_homepage_content', '');
     echo '<h3>' . __('Edit Homepage Content', 'gestion-lakeside') . '</h3>';
-    echo '<p>' . __('Content editing UI will be implemented here.', 'gestion-lakeside') . '</p>';
+    echo '<form method="post">';
+    wp_nonce_field('gl_content_editor_action', 'gl_content_editor_nonce');
+    wp_editor($content, 'gl_homepage_content', array('textarea_name' => 'gl_homepage_content', 'media_buttons' => true, 'textarea_rows' => 10));
+    echo '<input type="submit" class="button button-primary" value="' . __('Save Content', 'gestion-lakeside') . '" />';
+    echo '</form>';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gl_homepage_content'])) {
+        if (check_admin_referer('gl_content_editor_action', 'gl_content_editor_nonce')) {
+            update_option('gl_homepage_content', wp_kses_post($_POST['gl_homepage_content']));
+            echo '<div class="updated notice"><p>' . __('Homepage content updated.', 'gestion-lakeside') . '</p></div>';
+        }
+    }
 }
 
 // Extend dashboard page to include content editor
@@ -53,6 +64,59 @@ function gl_dashboard_page() {
         <h2><?php _e('Content Management', 'gestion-lakeside'); ?></h2>
         <?php gl_render_content_editor(); ?>
     </div>
+    <div class="gl-dashboard-widgets">
+        <div class="gl-widget gl-analytics-widget">
+            <h3><i class="fa-solid fa-chart-line"></i> Analytics</h3>
+            <canvas id="gl-analytics-chart" height="120"></canvas>
+        </div>
+    </div>
+    <!-- Advanced Dashboard UI: GSAP, SVG, and Microinteractions -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate dashboard cards
+      gsap.from('.wrap h1, .wrap h2, .wrap p, .wrap form', {
+        y: 40,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.8,
+        ease: 'power3.out',
+        delay: 0.2
+      });
+      // Microinteraction for toggles/buttons
+      document.querySelectorAll('.button, input[type=checkbox]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          gsap.to(el, {scale: 1.06, boxShadow: '0 4px 24px #48BFF9', duration: 0.18});
+        });
+        el.addEventListener('mouseleave', () => {
+          gsap.to(el, {scale: 1, boxShadow: 'none', duration: 0.18});
+        });
+      });
+      // Chart.js demo data for analytics
+      if (document.getElementById('gl-analytics-chart')) {
+        new Chart(document.getElementById('gl-analytics-chart').getContext('2d'), {
+          type: 'line',
+          data: {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            datasets: [{
+              label: 'Quote Requests',
+              data: [12, 19, 7, 14, 20, 13, 17],
+              borderColor: '#48BFF9',
+              backgroundColor: 'rgba(72,191,249,0.1)',
+              tension: 0.4,
+              fill: true
+            }]
+          },
+          options: {
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+          }
+        });
+      }
+    });
+    </script>
     <?php
 }
 
@@ -128,8 +192,7 @@ function gl_handle_image_upload() {
 add_action('wp_ajax_gl_image_upload', 'gl_handle_image_upload');
 
 
-// Dashboard page content
-function gl_dashboard_page() {
+
     if (!current_user_can('manage_options')) {
         wp_die(__('You do not have sufficient permissions to access this page.'));
     }
@@ -159,12 +222,19 @@ function gl_dashboard_page() {
         </form>
 
         <h2><?php _e('Content Management', 'gestion-lakeside'); ?></h2>
-        <p><?php _e('Content editing features will be added here.', 'gestion-lakeside'); ?></p>
+        <?php gl_render_content_editor(); ?>
     </div>
+        <div class="gl-dashboard-widgets">
+            <div class="gl-widget gl-analytics-widget">
+                <h3><i class="fa-solid fa-chart-line"></i> Analytics</h3>
+                <canvas id="gl-analytics-chart" height="120"></canvas>
+            </div>
+        </div>
 
 <!-- Advanced Dashboard UI: GSAP, SVG, and Microinteractions -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Animate dashboard cards
