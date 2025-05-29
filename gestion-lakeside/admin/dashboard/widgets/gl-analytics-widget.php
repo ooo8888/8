@@ -5,6 +5,9 @@ function gl_render_analytics_widget() {
     <div class="gl-widget gl-analytics-widget">
         <h3><i class="fa-solid fa-chart-line"></i> <?php _e('Analytics', 'gestion-lakeside'); ?></h3>
         <canvas id="gl-analytics-chart" height="120"></canvas>
+        <div class="gl-analytics-traffic-placeholder">
+            <!-- Future: Site traffic/visitor analytics will appear here. -->
+        </div>
     </div>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -39,6 +42,13 @@ function gl_render_analytics_widget() {
             postsHtml += '</ul>';
             document.querySelector('.gl-analytics-widget').insertAdjacentHTML('beforeend', postsHtml);
           });
+    // GSAP microinteraction: Animate chart and posts on load
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.gsap && document.querySelector('.gl-analytics-widget')) {
+        gsap.from('.gl-analytics-widget', {opacity:0, y:40, duration:0.8, ease:'power2.out'});
+        gsap.from('#gl-analytics-chart', {scale:0.8, opacity:0, duration:0.7, delay:0.2});
+      }
+    });
       }
     });
     </script>

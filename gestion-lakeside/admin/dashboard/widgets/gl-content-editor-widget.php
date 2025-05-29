@@ -19,5 +19,17 @@ function gl_render_content_editor_widget() {
         }
         ?>
     </div>
+        <style>
+        .gl-content-editor-widget .button-primary { background: linear-gradient(90deg,#1E90FF,#48BFF9); border: none; }
+        .gl-content-editor-widget { box-shadow: 0 2px 16px rgba(30,144,255,0.08), 0 1.5px 6px rgba(72,191,249,0.07); border-radius: 12px; }
+        </style>
+        <script>
+        // GSAP microinteraction: Animate content editor widget on load
+        document.addEventListener('DOMContentLoaded', function() {
+          if (window.gsap && document.querySelector('.gl-content-editor-widget')) {
+            gsap.from('.gl-content-editor-widget', {opacity:0, y:40, duration:0.8, delay:0.3, ease:'power2.out'});
+          }
+        });
+        </script>
     <?php
 }

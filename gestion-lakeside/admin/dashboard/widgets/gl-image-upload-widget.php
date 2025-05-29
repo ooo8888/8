@@ -10,6 +10,23 @@ function gl_render_image_upload_widget() {
         </form>
         <div id="gl-upload-result"></div>
     </div>
+        <style>
+        .gl-image-upload-widget input[type='file']::-webkit-file-upload-button {
+            background: #1E90FF; color: #fff; border: none; padding: 0.5em 1.2em; border-radius: 4px; font-weight: 600; transition: background 0.2s;
+        }
+        .gl-image-upload-widget input[type='file']:hover::-webkit-file-upload-button {
+            background: #48BFF9;
+        }
+        .gl-image-upload-widget .button-primary { background: linear-gradient(90deg,#1E90FF,#48BFF9); border: none; }
+        </style>
+        <script>
+        // GSAP microinteraction: Animate upload widget on load
+        document.addEventListener('DOMContentLoaded', function() {
+          if (window.gsap && document.querySelector('.gl-image-upload-widget')) {
+            gsap.from('.gl-image-upload-widget', {opacity:0, y:40, duration:0.8, delay:0.2, ease:'power2.out'});
+          }
+        });
+        </script>
     <script>
     document.getElementById('gl-image-upload-form').addEventListener('submit', function(e) {
         e.preventDefault();
