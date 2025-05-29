@@ -269,20 +269,5 @@ function gl_get_quote_count() {
     return $wpdb->get_var("SELECT COUNT(*) FROM $table_name");
 }
 
-function gl_dashboard_page() {
-    if (!current_user_can('manage_options')) {
-        wp_die(__('You do not have sufficient permissions to access this page.'));
-    }
-    $quote_count = gl_get_quote_count();
-    ?>
-    <div class="wrap">
-        <h1><?php _e('Gestion Lakeside Dashboard', 'gestion-lakeside'); ?></h1>
-        <p><?php _e('Traffic analytics, quote requests, and content management will be here.', 'gestion-lakeside'); ?></p>
-        <p><strong><?php printf(__('Total quote requests: %d', 'gestion-lakeside'), $quote_count); ?></strong></p>
-        <p><?php _e('AI Blog Generator toggle and other settings will be implemented.', 'gestion-lakeside'); ?></p>
-    </div>
-    <?php
-}
-
 
 ?>
