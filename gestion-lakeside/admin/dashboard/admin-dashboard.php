@@ -55,6 +55,18 @@ function gl_dashboard_page() {
     ?>
     <div class="wrap">
         <h1><?php _e('Gestion Lakeside Dashboard', 'gestion-lakeside'); ?></h1>
+        <form method="post" style="float:right; margin-top:-2.5rem;">
+            <select name="gl_dashboard_lang" id="gl_dashboard_lang" onchange="this.form.submit()" style="padding:0.3em 1em; border-radius:6px; border:1px solid #48BFF9;">
+                <option value="en" <?php selected(get_user_meta(get_current_user_id(), 'gl_dashboard_lang', true), 'en'); ?>>English</option>
+                <option value="fr" <?php selected(get_user_meta(get_current_user_id(), 'gl_dashboard_lang', true), 'fr'); ?>>Français</option>
+            </select>
+        </form>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['gl_dashboard_lang'])) {
+            update_user_meta(get_current_user_id(), 'gl_dashboard_lang', $_POST['gl_dashboard_lang']);
+        }
+        $gl_dashboard_lang = get_user_meta(get_current_user_id(), 'gl_dashboard_lang', true) ?: 'en';
+        ?>
         <h2><?php _e('Quote Requests', 'gestion-lakeside'); ?></h2>
         <p><?php printf(__('Total quote requests: %d', 'gestion-lakeside'), $quote_count); ?></p>
 
