@@ -10,6 +10,14 @@ function gl_render_analytics_widget() {
         </div>
     </div>
     <script>
+    // JS i18n helper for dashboard widgets
+    function gl_i18n(str) {
+      if (typeof window.gl_dashboard_i18n === 'object' && window.gl_dashboard_i18n[str]) {
+        return window.gl_dashboard_i18n[str];
+      }
+      return str;
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       if (document.getElementById('gl-analytics-chart')) {
         fetch(ajaxurl + '?action=gl_dashboard_analytics')
@@ -21,7 +29,7 @@ function gl_render_analytics_widget() {
             new Chart(ctx, {
               type: 'bar',
               data: {
-                labels: ['Quotes', 'Blog Posts'],
+                labels: [gl_i18n('Quotes'), gl_i18n('Blog Posts')],
                 datasets: [{
                   label: 'Count',
                   data: [stats.quote_count, stats.blog_count],

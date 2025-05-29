@@ -67,6 +67,13 @@ function gl_dashboard_page() {
         }
         $gl_dashboard_lang = get_user_meta(get_current_user_id(), 'gl_dashboard_lang', true) ?: 'en';
         ?>
+        <script>
+        window.gl_dashboard_i18n = {
+            'Quotes': '<?php echo esc_js(__('Quotes', 'gestion-lakeside')); ?>',
+            'Blog Posts': '<?php echo esc_js(__('Blog Posts', 'gestion-lakeside')); ?>'
+        };
+        </script>
+
         <h2><?php _e('Quote Requests', 'gestion-lakeside'); ?></h2>
         <p><?php printf(__('Total quote requests: %d', 'gestion-lakeside'), $quote_count); ?></p>
 
@@ -121,7 +128,7 @@ function gl_dashboard_page() {
             new Chart(ctx, {
               type: 'bar',
               data: {
-                labels: ['Quotes', 'Blog Posts'],
+                labels: [gl_i18n('Quotes'), gl_i18n('Blog Posts')],
                 datasets: [{
                   label: 'Count',
                   data: [stats.quote_count, stats.blog_count],
