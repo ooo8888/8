@@ -24,6 +24,14 @@ function gl_render_content_editor_widget() {
         .gl-content-editor-widget { box-shadow: 0 2px 16px rgba(30,144,255,0.08), 0 1.5px 6px rgba(72,191,249,0.07); border-radius: 12px; }
         </style>
         <script>
+        // JS i18n helper for dashboard widgets
+        function gl_i18n(str) {
+          if (typeof window.gl_dashboard_i18n === 'object' && window.gl_dashboard_i18n[str]) {
+            return window.gl_dashboard_i18n[str];
+          }
+          return str;
+        }
+
         // GSAP microinteraction: Animate content editor widget on load
         document.addEventListener('DOMContentLoaded', function() {
           if (window.gsap && document.querySelector('.gl-content-editor-widget')) {

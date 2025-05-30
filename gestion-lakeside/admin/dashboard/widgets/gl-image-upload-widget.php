@@ -20,6 +20,14 @@ function gl_render_image_upload_widget() {
         .gl-image-upload-widget .button-primary { background: linear-gradient(90deg,#1E90FF,#48BFF9); border: none; }
         </style>
         <script>
+        // JS i18n helper for dashboard widgets
+        function gl_i18n(str) {
+          if (typeof window.gl_dashboard_i18n === 'object' && window.gl_dashboard_i18n[str]) {
+            return window.gl_dashboard_i18n[str];
+          }
+          return str;
+        }
+
         // GSAP microinteraction: Animate upload widget on load
         document.addEventListener('DOMContentLoaded', function() {
           if (window.gsap && document.querySelector('.gl-image-upload-widget')) {
