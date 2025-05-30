@@ -57,8 +57,8 @@ function gl_dashboard_page() {
         <h1><?php _e('Gestion Lakeside Dashboard', 'gestion-lakeside'); ?></h1>
         <form method="post" style="float:right; margin-top:-2.5rem;">
             <select name="gl_dashboard_lang" id="gl_dashboard_lang" onchange="this.form.submit()" style="padding:0.3em 1em; border-radius:6px; border:1px solid #48BFF9;">
-                <option value="en" <?php selected(get_user_meta(get_current_user_id(), 'gl_dashboard_lang', true), 'en'); ?>>English</option>
-                <option value="fr" <?php selected(get_user_meta(get_current_user_id(), 'gl_dashboard_lang', true), 'fr'); ?>>Français</option>
+                <option value="en" <?php selected(get_user_meta(get_current_user_id(), 'gl_dashboard_lang', true), 'en'); ?>><?php _e('English', 'gestion-lakeside'); ?></option>
+                <option value="fr" <?php selected(get_user_meta(get_current_user_id(), 'gl_dashboard_lang', true), 'fr'); ?>><?php _e('French', 'gestion-lakeside'); ?></option>
             </select>
         </form>
         <?php
@@ -266,7 +266,7 @@ add_action('wp_ajax_gl_image_upload', 'gl_handle_image_upload');
     </div>
         <div class="gl-dashboard-widgets">
             <div class="gl-widget gl-analytics-widget">
-                <h3><i class="fa-solid fa-chart-line"></i> Analytics</h3>
+                <h3><i class="fa-solid fa-chart-line"></i> <?php _e('Analytics', 'gestion-lakeside'); ?></h3>
                 <canvas id="gl-analytics-chart" height="120"></canvas>
             </div>
         </div>
